@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Закупки</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Настройки</string>
+    <string name="dialogs_yes">ОК</string>
+    <string name="dialogs_no">Отмена</string>
+</resources>
