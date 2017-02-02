@@ -1,4 +1,4 @@
-package com.my.zakupki.DealClasses;
+package com.my.zakupki.DataClasses;
 
 
 public class Deal {

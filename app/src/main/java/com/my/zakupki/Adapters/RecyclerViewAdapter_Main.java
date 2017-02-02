@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.my.zakupki.DealClasses.Deal;
+import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.R;
 
 import java.util.ArrayList;

@@ -17,7 +17,7 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
-import com.my.zakupki.DealClasses.Deal;
+import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.R;
 
 import java.util.ArrayList;
