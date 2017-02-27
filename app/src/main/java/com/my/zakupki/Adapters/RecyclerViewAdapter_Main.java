@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.my.zakupki.DataClasses.Deal;
+import com.my.zakupki.Interfaces.AdapterInterface;
 import com.my.zakupki.R;
 
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
 
     private List<Deal> records;
     private List<Deal> mOriginalValues;
-//    private ArrayFilter mFilter;
+    private AdapterInterface mAdapterInterface;
 
-    public RecyclerViewAdapter_Main(List<Deal> SortedList) {
+    public RecyclerViewAdapter_Main(List<Deal> SortedList, AdapterInterface adapterInterface) {
         records = SortedList;
         mOriginalValues = new ArrayList<>(records);
+        mAdapterInterface=adapterInterface;
     }
 
     @Override
@@ -45,6 +47,23 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         viewHolder.description.setText(record.Description);
         viewHolder.publish_date.setText(record.PublishDate);
         viewHolder.update_date.setText(record.UpdateDate);
+
+        viewHolder.cardView.setTag(record);
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapterInterface.onItemClick(v);
+            }
+        });
+
+        viewHolder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return mAdapterInterface.onItemLongClick(v);
+            }
+        });
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.my.zakupki.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,13 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
-import com.my.zakupki.DataClasses.Deal;
+import com.my.zakupki.Common;
+import com.my.zakupki.DataClasses.DealList;
+import com.my.zakupki.Interfaces.AdapterInterface;
 import com.my.zakupki.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.my.zakupki.Storage;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity
     private RecyclerViewAdapter_Main recyclerViewAdapter;
     private LinearLayoutManager layoutManager;
     private FloatingActionButton fab;
-
-    private List<Deal> MainList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +41,8 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                MaterialDialog dialog = new MaterialDialog.Builder(MainActivity.this)
-                        .title("Search")
-                        .positiveText(R.string.dialogs_yes)
-                        .negativeText(R.string.dialogs_no)
-                        .show();
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FindDealActivity.class));
             }
         });
 
@@ -62,68 +56,82 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        MainList=new ArrayList<>();
+        Common.Favorites=new DealList();
+        Storage.LoadFavorites(this);
 
-        Deal deal1=new Deal();
-        deal1.Number="124352345";
-        deal1.Publisher="MTC";
-        deal1.Price="10 000";
-        deal1.Currency="российский рубль";
-        deal1.PublishType="Открытый аукцион";
-        deal1.CurrentStatus ="Подача заявок";
-        deal1.Description="Оказание услуг связи";
-        deal1.PublishDate="31.01.2017";
-        deal1.UpdateDate="01.02.2017";
-
-        Deal deal2=new Deal();
-        deal2.Number="34631236";
-        deal2.Publisher="Megaphone";
-        deal2.Price="25 000";
-        deal2.Currency="российский рубль";
-        deal2.PublishType="Открытый аукцион";
-        deal2.CurrentStatus ="Подача заявок";
-        deal2.Description="Оказание услуг связи";
-        deal2.PublishDate="31.01.2017";
-        deal2.UpdateDate="01.02.2017";
-
-        Deal deal3=new Deal();
-        deal3.Number="2362342";
-        deal3.Publisher="Beeline";
-        deal3.Price="1 000 000";
-        deal3.Currency="российский рубль";
-        deal3.PublishType="Открытый аукцион";
-        deal3.CurrentStatus ="Подача заявок";
-        deal3.Description="Оказание услуг связи";
-        deal3.PublishDate="31.01.2017";
-        deal3.UpdateDate="01.02.2017";
-
-        Deal deal4=new Deal();
-        deal4.Number="96764422";
-        deal4.Publisher="Tele2";
-        deal4.Price="25 000";
-        deal4.Currency="российский рубль";
-        deal4.PublishType="Открытый аукцион";
-        deal4.CurrentStatus ="Подача заявок";
-        deal4.Description="Оказание услуг связи";
-        deal4.PublishDate="31.01.2017";
-        deal4.UpdateDate="01.02.2017";
-
-        MainList.add(deal1);
-        MainList.add(deal2);
-        MainList.add(deal3);
-        MainList.add(deal4);
+//        Deal deal1=new Deal();
+//        deal1.Number="124352345";
+//        deal1.Publisher="MTC";
+//        deal1.Price="10 000";
+//        deal1.Currency="российский рубль";
+//        deal1.PublishType="Открытый аукцион";
+//        deal1.CurrentStatus ="Подача заявок";
+//        deal1.Description="Оказание услуг связи";
+//        deal1.PublishDate="31.01.2017";
+//        deal1.UpdateDate="01.02.2017";
+//
+//        Deal deal2=new Deal();
+//        deal2.Number="34631236";
+//        deal2.Publisher="Megaphone";
+//        deal2.Price="25 000";
+//        deal2.Currency="российский рубль";
+//        deal2.PublishType="Открытый аукцион";
+//        deal2.CurrentStatus ="Подача заявок";
+//        deal2.Description="Оказание услуг связи";
+//        deal2.PublishDate="31.01.2017";
+//        deal2.UpdateDate="01.02.2017";
+//
+//        Deal deal3=new Deal();
+//        deal3.Number="2362342";
+//        deal3.Publisher="Beeline";
+//        deal3.Price="1 000 000";
+//        deal3.Currency="российский рубль";
+//        deal3.PublishType="Открытый аукцион";
+//        deal3.CurrentStatus ="Подача заявок";
+//        deal3.Description="Оказание услуг связи";
+//        deal3.PublishDate="31.01.2017";
+//        deal3.UpdateDate="01.02.2017";
+//
+//        Deal deal4=new Deal();
+//        deal4.Number="96764422";
+//        deal4.Publisher="Tele2";
+//        deal4.Price="25 000";
+//        deal4.Currency="российский рубль";
+//        deal4.PublishType="Открытый аукцион";
+//        deal4.CurrentStatus ="Подача заявок";
+//        deal4.Description="Оказание услуг связи";
+//        deal4.PublishDate="31.01.2017";
+//        deal4.UpdateDate="01.02.2017";
+//
+//        Common.Favorites.Items.add(deal1);
+//        Common.Favorites.Items.add(deal2);
+//        Common.Favorites.Items.add(deal3);
+//        Common.Favorites.Items.add(deal4);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv);
-        recyclerViewAdapter = new RecyclerViewAdapter_Main(MainList);
+        recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.Favorites.Items, adapterInterface);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         recyclerView.setItemAnimator(itemAnimator);
 
         //view
-        recyclerViewAdapter = new RecyclerViewAdapter_Main(MainList);
+        recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.Favorites.Items, adapterInterface);
         recyclerView.setAdapter(recyclerViewAdapter);
+
     }
+
+    private AdapterInterface adapterInterface=new AdapterInterface() {
+        @Override
+        public void onItemClick(View v) {
+
+        }
+
+        @Override
+        public boolean onItemLongClick(View v) {
+            return false;
+        }
+    };
 
     @Override
     public void onBackPressed() {
