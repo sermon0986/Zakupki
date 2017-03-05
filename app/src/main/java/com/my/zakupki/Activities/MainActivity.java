@@ -15,13 +15,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
 import com.my.zakupki.Common;
+import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.DataClasses.DealList;
 import com.my.zakupki.Interfaces.AdapterInterface;
+import com.my.zakupki.Net.ExpenseSearchUrlBuilder;
+import com.my.zakupki.Net.PageLoaderCallbackInterface;
+import com.my.zakupki.Net.RuleTreeFactory;
+import com.my.zakupki.Net.UrlstringBuilderFactory;
+import com.my.zakupki.Net.WebUrlLoader;
 import com.my.zakupki.R;
 import com.my.zakupki.Storage;
+
+import java.util.Map;
+
+import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,13 +49,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, FindDealActivity.class));
-            }
-        });
+        Common.maClient = new OkHttpClient();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,72 +64,56 @@ public class MainActivity extends AppCompatActivity
         Common.Favorites=new DealList();
         Storage.LoadFavorites(this);
 
-//        Deal deal1=new Deal();
-//        deal1.Number="124352345";
-//        deal1.Publisher="MTC";
-//        deal1.Price="10 000";
-//        deal1.Currency="российский рубль";
-//        deal1.PublishType="Открытый аукцион";
-//        deal1.CurrentStatus ="Подача заявок";
-//        deal1.Description="Оказание услуг связи";
-//        deal1.PublishDate="31.01.2017";
-//        deal1.UpdateDate="01.02.2017";
-//
-//        Deal deal2=new Deal();
-//        deal2.Number="34631236";
-//        deal2.Publisher="Megaphone";
-//        deal2.Price="25 000";
-//        deal2.Currency="российский рубль";
-//        deal2.PublishType="Открытый аукцион";
-//        deal2.CurrentStatus ="Подача заявок";
-//        deal2.Description="Оказание услуг связи";
-//        deal2.PublishDate="31.01.2017";
-//        deal2.UpdateDate="01.02.2017";
-//
-//        Deal deal3=new Deal();
-//        deal3.Number="2362342";
-//        deal3.Publisher="Beeline";
-//        deal3.Price="1 000 000";
-//        deal3.Currency="российский рубль";
-//        deal3.PublishType="Открытый аукцион";
-//        deal3.CurrentStatus ="Подача заявок";
-//        deal3.Description="Оказание услуг связи";
-//        deal3.PublishDate="31.01.2017";
-//        deal3.UpdateDate="01.02.2017";
-//
-//        Deal deal4=new Deal();
-//        deal4.Number="96764422";
-//        deal4.Publisher="Tele2";
-//        deal4.Price="25 000";
-//        deal4.Currency="российский рубль";
-//        deal4.PublishType="Открытый аукцион";
-//        deal4.CurrentStatus ="Подача заявок";
-//        deal4.Description="Оказание услуг связи";
-//        deal4.PublishDate="31.01.2017";
-//        deal4.UpdateDate="01.02.2017";
-//
-//        Common.Favorites.Items.add(deal1);
-//        Common.Favorites.Items.add(deal2);
-//        Common.Favorites.Items.add(deal3);
-//        Common.Favorites.Items.add(deal4);
-
         recyclerView = (RecyclerView) findViewById(R.id.rv);
-        recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.Favorites.Items, adapterInterface);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         recyclerView.setItemAnimator(itemAnimator);
 
         //view
+        UpdateView();
+
+        //test
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FindDealActivity.class));
+
+            }
+        });
+
+    }
+
+    private void UpdateView()
+    {
         recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.Favorites.Items, adapterInterface);
         recyclerView.setAdapter(recyclerViewAdapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Common.NeedRefreshMain) {
+            UpdateView();
+            Common.NeedRefreshMain=false;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+//        if(requestCode==0 && resultCode==RESULT_OK){
+//            UpdateView();
+//        }
     }
 
     private AdapterInterface adapterInterface=new AdapterInterface() {
         @Override
         public void onItemClick(View v) {
-
+            Common.CurrentDeal=(Deal)v.getTag();
+            startActivityForResult(new Intent(MainActivity.this, DealDetailsActivity.class), 0);
         }
 
         @Override

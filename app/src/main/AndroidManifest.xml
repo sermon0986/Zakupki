@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.DealDetailsActivity" />
-        <activity android:name=".Activities.FindDealActivity"></activity>
+        <activity android:name=".Activities.FindDealActivity" />
+        <activity android:name=".Activities.FoundDealActivity"></activity>
     </application>
 
 </manifest>

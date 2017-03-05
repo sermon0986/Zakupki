@@ -7,4 +7,7 @@
     <string name="action_settings">Настройки</string>
     <string name="dialogs_yes">ОК</string>
     <string name="dialogs_no">Отмена</string>
+
+    <string name="ExpenseSearchUrl">http://zakupki.gov.ru/epz/order/quicksearch/search_eis.html</string>
+    <string name="ExpenseSearchUrlTokenPageNumber">pageNumber</string>
 </resources>

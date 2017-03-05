@@ -15,6 +15,10 @@ public class Deal {
     public String PublishDate="";
     public String UpdateDate="";
 
+    public String UrlPrintForm="";
+    public String UrlCommonInfo="";
+    public String UrlDocuments="";
+
 
     public JSONObject ToJSON()
     {
