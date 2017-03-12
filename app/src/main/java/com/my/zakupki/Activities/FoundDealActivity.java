@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.my.zakupki.Adapters.RecyclerViewAdapter_Found;
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
 import com.my.zakupki.Common;
 import com.my.zakupki.DataClasses.Deal;
@@ -25,7 +26,7 @@ import java.util.Map;
 public class FoundDealActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter_Main recyclerViewAdapter;
+    private RecyclerViewAdapter_Found recyclerViewAdapter;
     private LinearLayoutManager layoutManager;
 
     private boolean loading = false;
@@ -46,7 +47,7 @@ public class FoundDealActivity extends AppCompatActivity {
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         recyclerView.setItemAnimator(itemAnimator);
 
-        recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.DealListResults, adapterInterface);
+        recyclerViewAdapter = new RecyclerViewAdapter_Found(Common.DealListResults, adapterInterface);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -89,6 +90,13 @@ public class FoundDealActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        recyclerViewAdapter.notifyDataSetChanged();
+
+    }
+
     private PageLoaderCallbackInterface callbackInterface=new PageLoaderCallbackInterface() {
         @Override
         public void onSuccess(Map<String, Object> resultSet) {
@@ -100,7 +108,7 @@ public class FoundDealActivity extends AppCompatActivity {
 
             Common.ParseResults(resultSet);
 
-            recyclerViewAdapter = new RecyclerViewAdapter_Main(Common.DealListResults, adapterInterface);
+            recyclerViewAdapter = new RecyclerViewAdapter_Found(Common.DealListResults, adapterInterface);
             recyclerView.setAdapter(recyclerViewAdapter);
             recyclerView.scrollToPosition(pastVisiblesItems);
         }

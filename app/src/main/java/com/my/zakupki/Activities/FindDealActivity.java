@@ -1,12 +1,14 @@
 package com.my.zakupki.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -27,8 +29,10 @@ import java.util.Map;
 
 public class FindDealActivity extends AppCompatActivity {
 
-    private Button find_buton;
+    private Button find_button;
     private MaterialDialog WaitDialog;
+
+    private EditText search_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +42,10 @@ public class FindDealActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Поиск закупок");
 
-        find_buton = (Button)findViewById(R.id.find_buton);
+        find_button = (Button)findViewById(R.id.find_button);
+        search_string = (EditText) findViewById(R.id.search_string);
 
-        find_buton.setOnClickListener(new View.OnClickListener() {
+        find_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -60,7 +65,7 @@ public class FindDealActivity extends AppCompatActivity {
                     if(null != Common.FSearchUrlBuilder) {// get a default parameter set:
                         Map<String, String> params = ExpenseSearchUrlBuilder.getEmptyMap();
                         // put into the search string:
-                        params.put("searchString", "услуги+связи");
+                        params.put("searchString", search_string.getText().toString());
                         Common.FSearchUrlBuilder = Common.FSearchUrlBuilder.setApp(FindDealActivity.this).InitUrl(params);
                     }
                 }

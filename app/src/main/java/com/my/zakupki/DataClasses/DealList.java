@@ -15,6 +15,14 @@ public class DealList {
         Items=new ArrayList<>();
     }
 
+    public int IndexOf(Deal src)
+    {
+        for (int i=0;i<Items.size();i++)
+            if(Items.get(i).Number.trim().equals(src.Number.trim()))
+                return i;
+        return -1;
+    }
+
     public String ToString()
     {
         JSONArray array=new JSONArray();

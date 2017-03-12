@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.my.zakupki.Common;
 import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.Interfaces.AdapterInterface;
 import com.my.zakupki.R;
@@ -32,6 +34,8 @@ public class RecyclerViewAdapter_Found extends RecyclerView.Adapter<RecyclerView
         return new ViewHolder(v);
     }
 
+
+
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
 
@@ -47,6 +51,11 @@ public class RecyclerViewAdapter_Found extends RecyclerView.Adapter<RecyclerView
         viewHolder.description.setText(record.Description);
         viewHolder.publish_date.setText(record.PublishDate);
         viewHolder.update_date.setText(record.UpdateDate);
+
+        if(Common.Favorites.IndexOf(record)!=-1)
+            viewHolder.favorite_sign.setVisibility(View.VISIBLE);
+        else
+            viewHolder.favorite_sign.setVisibility(View.GONE);
 
         viewHolder.cardView.setTag(record);
 
@@ -93,6 +102,7 @@ public class RecyclerViewAdapter_Found extends RecyclerView.Adapter<RecyclerView
         private TextView description;
         private TextView publish_date;
         private TextView update_date;
+        private ImageView favorite_sign;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -101,6 +111,7 @@ public class RecyclerViewAdapter_Found extends RecyclerView.Adapter<RecyclerView
             publisher = (TextView) itemView.findViewById(R.id.publisher);
             price = (TextView) itemView.findViewById(R.id.price);
             currency = (TextView) itemView.findViewById(R.id.currency);
+            favorite_sign = (ImageView) itemView.findViewById(R.id.favorite_sign);
 
             publish_type = (TextView) itemView.findViewById(R.id.publish_type);
             current_status = (TextView) itemView.findViewById(R.id.current_status);

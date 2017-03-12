@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.my.zakupki.Activities.DealDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -20,5 +20,227 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar_details">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/colorSecondBackground"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:contentPadding="5dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/appbar_details"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="5dp"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TextView
+                        android:text="Информация"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Номер"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVnumber"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Способ размещения закупки"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVpubtype"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Заказчик"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVpublisher"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Наименование закупки"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVdesc"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Сумма"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVprice"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Статус"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVcurstatus"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Размещено"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVpublish_date"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="Обновлено"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/TVupd_date"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:text="#"
+                            android:textSize="15dp" />
+                    </TableRow>
+
+
+                </TableLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </ScrollView>
 
 </RelativeLayout>

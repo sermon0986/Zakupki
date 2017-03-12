@@ -45,8 +45,10 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         viewHolder.publish_type.setText(record.PublishType);
         viewHolder.current_status.setText(record.CurrentStatus);
         viewHolder.description.setText(record.Description);
-        viewHolder.publish_date.setText(record.PublishDate);
-        viewHolder.update_date.setText(record.UpdateDate);
+        if(!record.PublishDate.isEmpty())
+            viewHolder.publish_date.setText(record.PublishDate);
+        if(!record.UpdateDate.isEmpty())
+            viewHolder.update_date.setText(record.UpdateDate);
 
         viewHolder.cardView.setTag(record);
 
