@@ -74,7 +74,7 @@ public class DealDetailsActivity extends AppCompatActivity {
 
         if (item.getItemId()==R.id.action_favorites) {
             Common.NeedRefreshMain=true;
-            if(Common.Favorites.IndexOf(Common.CurrentDeal)!=-1)
+            if(Common.Favorites.IndexOf(Common.CurrentDeal)==-1)
                 Common.Favorites.Items.add(Common.CurrentDeal);
             else
                 Common.Favorites.Items.remove(Common.CurrentDeal);
