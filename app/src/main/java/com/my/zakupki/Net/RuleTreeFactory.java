@@ -50,11 +50,20 @@ public enum RuleTreeFactory  {
         TreeNode<BaseParsingRule> next13 = next1.addChild(new RegexMatchRule(12,"<li class=\"rightArrow\">[^0-9]*(\\d+)"));
 
         TreeNode<BaseParsingRule> next2 = root0.addChild(new RegexFindRule(2,"<div class=\"registerBox registerBoxBank margBtm20\">.*?(?=<div class=\"registerBox registerBoxBank margBtm20\">|<div class=\"margBtm50\">)"));
-        TreeNode<BaseParsingRule> next21 = next2.addChild(new RegexMatchRule(3,"<td class=\"tenderTd\">[A-Za-z<>/\\s]+<strong>\\s*([\\w[:blank:]:(),]+)\\s*</strong>.*?<span class=\"[\\w\\s]+\">([\\w\\x20:(),]+)/.*?<strong>\\s*([\\d[:blank:]]+)\\s*<span>"));
-            TreeNode<BaseParsingRule> next22 = next2.addChild(new RegexMatchRule(4,"<td class=\"descriptTenderTd\">.*(№\\s\\d+).*Заказчик:\\s*<ul>\\s*<li>\\s*<a.*?>([-\\w\\s\",.()№:A-Za-z=<>/]+)</a>.*?<dd>(.*?)</dd>.*?</td>"));
-        TreeNode<BaseParsingRule> next23 = next2.addChild(new RegexMatchRule(5,"<a[^>]*?(?=href)href=\"(.*?/[Pp]rint-?[Ff]orm/.*?)\""));
-        TreeNode<BaseParsingRule> next24 = next2.addChild(new RegexMatchRule(6,"<a[^>]*?(?=href)href=\"([^\"]*?common-info.*?)\""));
-        TreeNode<BaseParsingRule> next25 = next2.addChild(new RegexMatchRule(7,"<a[^>]*?(?=href)href=\"([^\"]*?documents.*?)\""));
+        // тип закупки:
+        TreeNode<BaseParsingRule> next21 = next2.addChild(new RegexMatchRule(3,"<strong>\\s*([\\w\\s:(),&#\\d;]+)\\s*</strong>"));
+        // статус закупки:
+        TreeNode<BaseParsingRule> next22 = next2.addChild(new RegexMatchRule(4,"<span class=\"checked noWrap\">(.*?)\\s/\\s<span"));
+        // закон:
+        TreeNode<BaseParsingRule> next23 = next2.addChild(new RegexMatchRule(5,"class=\"orange\">(.*?)</span></span>"));
+        // денег:
+        TreeNode<BaseParsingRule> next24 = next2.addChild(new RegexMatchRule(6,"<strong>\\s*([\\d\\p{Blank}]+)\\s*<span>(.*?)</span>"));
+
+//        TreeNode<BaseParsingRule> next22 = next2.addChild(new RegexMatchRule(3,"<td class=\"tenderTd\">[A-Za-z<>/\\s]+<strong>\\s*([\\w[:blank:]:(),]+)\\s*</strong>.*?<span class=\"[\\w\\s]+\">([\\w\\x20:(),]+)/.*?<strong>\\s*([\\d[:blank:]]+)\\s*<span>"));
+        TreeNode<BaseParsingRule> next25 = next2.addChild(new RegexMatchRule(7,"<td class=\"descriptTenderTd\">.*(№\\s\\d+).*Заказчик:\\s*<ul>\\s*<li>\\s*<a.*?>([-\\w\\s\",.()№:A-Za-z=<>/]+)</a>.*?<dd>(.*?)</dd>.*?</td>"));
+        TreeNode<BaseParsingRule> next26 = next2.addChild(new RegexMatchRule(8,"<a[^>]*?(?=href)href=\"(.*?/[Pp]rint-?[Ff]orm/.*?)\""));
+        TreeNode<BaseParsingRule> next27 = next2.addChild(new RegexMatchRule(9,"<a[^>]*?(?=href)href=\"([^\"]*?common-info.*?)\""));
+        TreeNode<BaseParsingRule> next28 = next2.addChild(new RegexMatchRule(10,"<a[^>]*?(?=href)href=\"([^\"]*?documents.*?)\""));
         return root0;
     }
 

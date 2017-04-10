@@ -30,14 +30,15 @@ public class SearchResultsTransformer extends BaseTreeResultTransformer {
         for(int i=0; i<getResult().N().S(0,0).Count(2); i++ ) {
             Map<String,String> map3 = new HashMap<>();
             map3.put("expenseType", getResult().N().S(0, 0).S(2, i).S(3,0).R());
-            map3.put("expenseStage", getResult().N().S(0, 0).S(2, i).S(3,1).R());
-            map3.put("expensePrice", getResult().N().S(0, 0).S(2, i).S(3,2).R());
-            map3.put("num", getResult().N().S(0, 0).S(2, i).S(4,0).R().trim());
-            map3.put("organization", getResult().N().S(0, 0).S(2, i).S(4,1).R().trim());
-            map3.put("subject", getResult().N().S(0, 0).S(2, i).S(4,2).R().trim());
-            map3.put("urlPrintForm", getResult().N().S(0, 0).S(2, i).S(5,0).R().trim());
-            map3.put("urlCommonInfo", getResult().N().S(0, 0).S(2, i).S(6,0).R().trim());
-            map3.put("urlDocuments", getResult().N().S(0, 0).S(2, i).S(7,0).R().trim());
+            map3.put("expenseStage", getResult().N().S(0, 0).S(2, i).S(4,0).R());
+            map3.put("expenseLaw", getResult().N().S(0, 0).S(2, i).S(5,0).R());
+            map3.put("expensePrice", getResult().N().S(0, 0).S(2, i).S(6,0).R()+getResult().N().S(0, 0).S(2, i).S(6,1).R());
+            map3.put("num", getResult().N().S(0, 0).S(2, i).S(7,0).R().trim());
+            map3.put("organization", getResult().N().S(0, 0).S(2, i).S(7,1).R().trim());
+            map3.put("subject", getResult().N().S(0, 0).S(2, i).S(7,2).R().trim());
+            map3.put("urlPrintForm", getResult().N().S(0, 0).S(2, i).S(8,0).R().trim());
+            map3.put("urlCommonInfo", getResult().N().S(0, 0).S(2, i).S(9,0).R().trim());
+            map3.put("urlDocuments", getResult().N().S(0, 0).S(2, i).S(10,0).R().trim());
             list.add(map3);
         }
         return result;
