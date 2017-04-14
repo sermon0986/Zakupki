@@ -30,6 +30,10 @@ public enum RuleTreeFactory  {
             return getFz44RuleTree();
         if("Fz223_Test_1".equals(aTag))
             return getFz223RuleTree();
+        if("Fz44_Docs".equals(aTag))
+            return getFz44DocsRuleTree();
+        if("Fz223_Docs".equals(aTag))
+            return getFz223DocsRuleTree();
         return new TreeNode<BaseParsingRule>(new RegexFindRule(0,"<html>.*</html>"));
     }
 
@@ -88,6 +92,26 @@ public enum RuleTreeFactory  {
         TreeNode<BaseParsingRule> next22 = next2.addChild(new RegexFindRule(4,"<tr\\s*[^>]*?>(.*?)(?=</tr>)"));
         TreeNode<BaseParsingRule> next41 = next22.addChild(new RegexMatchRule(5,"<td[^>]*?>(.*?)</td>"));
         TreeNode<BaseParsingRule> next51 = next41.addChild(new RegexMatchRule(6,"(<p[^>]*>|<b>)(.*?)(</p>|</b>)"));
+        return root0;
+    }
+
+    public TreeNode<BaseParsingRule> getFz44DocsRuleTree(){
+        TreeNode<BaseParsingRule> root0 = new TreeNode<BaseParsingRule>(new RegexFindRule(0,"<h2 class=\"noticeBoxH2\">(.*?)</h2>(.*?)(?=<h2|</body>)"));
+        TreeNode<BaseParsingRule> next0 = root0.addChild(new RegexMatchRule(1,"<h2 class=\"noticeBoxH2\">(.*?)</h2>(.*)"));
+        TreeNode<BaseParsingRule> next1 = next0.addChild(new RegexFindRule(2,"<a\\s*href=\"[^>]+?\"\\s*title=\".*?\">\\s*.*?\\s*</a>"));
+        TreeNode<BaseParsingRule> next2 = next1.addChild(new RegexMatchRule(3,"<a\\s*href=\"([^>]+?)\"\\s*title=\"(.*?)\">\\s*(.*?)\\s*</a>"));
+        return root0;
+    }
+
+    public TreeNode<BaseParsingRule> getFz223DocsRuleTree(){
+        TreeNode<BaseParsingRule> root0 = new TreeNode<BaseParsingRule>(new RegexFindRule(0,"<h2>.*?</h2>.*?(?=<h2|</body>)"));
+        TreeNode<BaseParsingRule> next0 = root0.addChild(new RegexMatchRule(1,"<h2>(.*?)</h2>(.*)"));
+        TreeNode<BaseParsingRule> next11 = next0.addChild(new RegexFindRule(2,"<a class=\"epz_aware\"\\s*href=\".*?\"\\s*title=\".*?\"\\s*onclick=\"doNotLocking\\(\\);\">.*?</a>"));
+        TreeNode<BaseParsingRule> next12 = next11.addChild(new RegexMatchRule(3,"<a class=\"epz_aware\"\\s*href=\"(.*?)\"\\s*title=\"(.*?)\"\\s*onclick=\"doNotLocking\\(\\);\">(.*?)</a>"));
+
+        TreeNode<BaseParsingRule> next2 = next0.addChild(new RegexMatchRule(4,"<span class=\"allRecords\">.*?<strong>(\\d+)</strong>"));
+        TreeNode<BaseParsingRule> next3 = next0.addChild(new RegexMatchRule(5,"<li class=\"currentPage\"><span>(\\d+)</span>"));
+        TreeNode<BaseParsingRule> next4 = next0.addChild(new RegexMatchRule(6,"<li class=\"rightArrow\"><a href=\"(.*?)\"></a>"));
         return root0;
     }
 }
