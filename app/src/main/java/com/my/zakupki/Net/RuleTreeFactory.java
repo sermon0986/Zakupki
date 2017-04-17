@@ -16,6 +16,12 @@ public enum RuleTreeFactory  {
             return new Fz44PrintFormResultTransformer(LoadRuleTree(aTag));
         if("Fz223_Test_1".equals(aTag))
             return new Fz223PrintFormResultTransformer(LoadRuleTree(aTag));
+        if("Fz44_Docs".equals(aTag))
+            return new Fz44DocsTransformer(LoadRuleTree(aTag));
+        if("Fz223_Docs".equals(aTag))
+            return new Fz223DocsTransformer(LoadRuleTree(aTag));
+        if("Uni_Zhournal".equals(aTag))
+            return new UniZhournalTransformer(LoadRuleTree(aTag));
         else
             return new Set1ResultTransformer(LoadRuleTree("Set1"));
     }
@@ -34,6 +40,8 @@ public enum RuleTreeFactory  {
             return getFz44DocsRuleTree();
         if("Fz223_Docs".equals(aTag))
             return getFz223DocsRuleTree();
+        if("Uni_Zhournal".equals(aTag))
+            return getUniZhournalRuleTree();
         return new TreeNode<BaseParsingRule>(new RegexFindRule(0,"<html>.*</html>"));
     }
 
@@ -114,5 +122,14 @@ public enum RuleTreeFactory  {
         TreeNode<BaseParsingRule> next4 = next0.addChild(new RegexMatchRule(6,"<li class=\"rightArrow\"><a href=\"(.*?)\"></a>"));
         return root0;
     }
+
+    private TreeNode<BaseParsingRule> getUniZhournalRuleTree() {
+        TreeNode<BaseParsingRule> root0 = new TreeNode<BaseParsingRule>(new RegexFindRule(0,"<tbody>.*</tbody>.*?<span class=\"allRecords\">\\s*.*?<strong>\\d+</strong>"));
+        TreeNode<BaseParsingRule> next4 = root0.addChild(new RegexMatchRule(4,"<span class=\"allRecords\">\\s*.*?<strong>(\\d+)</strong>"));
+        TreeNode<BaseParsingRule> next2 = root0.addChild(new RegexFindRule(2,"<tr class=[^>]+?>.*?</tr>"));
+        TreeNode<BaseParsingRule> next21 = next2.addChild(new RegexMatchRule(3,"<td>\\s*(\\d{2}\\.\\d{2}\\.\\d{4}\\s+\\d{2}:\\d{2})\\s.*?</td>\\s*<td[^>]*>\\s*(.*?)</td>"));
+        return root0;
+    }
+
 }
 

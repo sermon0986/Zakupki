@@ -14,6 +14,8 @@ public enum UrlstringBuilderFactory {
             return new Fz44PrintFormUrlBuilder();
         if("Fz223_Test_1".equals(aTag))
             return new Fz223PrintFormUrlBuilder();
+        if("UniZhournal".equals(aTag))
+            return new UniZhournalUrlBuilder();
         else
             return null;
     }
