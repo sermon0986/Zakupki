@@ -1,34 +1,25 @@
 package com.my.zakupki.DataClasses;
 
-
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DealList {
+public class ParamGroupList {
 
-    public List<Deal> Items;
+    public List<ParamGroup> Items;
 
-    public DealList()
+    public ParamGroupList()
     {
         Items=new ArrayList<>();
-    }
-
-    public int IndexOf(Deal src)
-    {
-        for (int i=0;i<Items.size();i++)
-            if(Items.get(i).Number.trim().equals(src.Number.trim()))
-                return i;
-        return -1;
     }
 
     public String ToJSON()
     {
         JSONArray array=new JSONArray();
         try {
-            for(Deal deal:Items)
-                array.put(deal.ToJSON());
+            for(ParamGroup paramGroup:Items)
+                array.put(paramGroup.ToJSON());
         }
         catch (Exception ignore)
         {}
@@ -41,9 +32,9 @@ public class DealList {
             JSONArray array=new JSONArray(str);
             int num=array.length();
             for(int i=0;i<num;i++){
-                Deal deal=new Deal();
-                deal.FromJSON(array.getJSONObject(i));
-                Items.add(deal);
+                ParamGroup paramGroup=new ParamGroup();
+                paramGroup.FromJSON(array.getJSONObject(i));
+                Items.add(paramGroup);
             }
         } catch (Exception ignore) {
         }

@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
@@ -48,6 +49,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button testButton=(Button)findViewById(R.id.testButton);
+        //testButton.setVisibility(View.GONE);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: test code here
+            }
+        });
 
         Common.maClient = new OkHttpClient();
 

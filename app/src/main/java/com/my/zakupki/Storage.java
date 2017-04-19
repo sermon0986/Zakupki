@@ -42,7 +42,7 @@ public class Storage {
         try {
             file = new File(filePath, "favorites");
             outputStream = new FileOutputStream(file);
-            outputStream.write(Common.Favorites.ToString().getBytes());
+            outputStream.write(Common.Favorites.ToJSON().getBytes());
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class Storage {
             return false;
         File file = new File(filePath, "favorites");
         String fileContent = GetStringFromFile(file);
-        Common.Favorites.FromString(fileContent);
+        Common.Favorites.FromJSON(fileContent);
         return true;
     }
 

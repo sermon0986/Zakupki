@@ -14,11 +14,20 @@ public class Deal {
     public String CurrentStatus="";
     public String PublishDate="";
     public String UpdateDate="";
+    public String Law="";
 
     public String UrlPrintForm="";
     public String UrlCommonInfo="";
     public String UrlDocuments="";
 
+    public EventList Events;
+    public ParamGroupList ParamGroups;
+
+    public Deal()
+    {
+        Events=new EventList();
+        ParamGroups=new ParamGroupList();
+    }
 
     public JSONObject ToJSON()
     {
@@ -33,7 +42,12 @@ public class Deal {
             object.put("CurrentStatus", CurrentStatus);
             object.put("PublishDate", PublishDate);
             object.put("UpdateDate", UpdateDate);
-
+            object.put("Law", Law);
+            object.put("UrlPrintForm", UrlPrintForm);
+            object.put("UrlCommonInfo", UrlCommonInfo);
+            object.put("UrlDocuments", UrlDocuments);
+            object.put("Events", Events.ToJSON());
+            object.put("ParamGroups", ParamGroups.ToJSON());
         }
         catch (Exception ignore)
         {}
@@ -51,6 +65,12 @@ public class Deal {
             CurrentStatus = object.optString("CurrentStatus");
             PublishDate = object.optString("PublishDate");
             UpdateDate = object.optString("UpdateDate");
+            Law = object.optString("Law");
+            UrlPrintForm = object.optString("UrlPrintForm");
+            UrlCommonInfo = object.optString("UrlCommonInfo");
+            UrlDocuments = object.optString("UrlDocuments");
+            Events.FromJSON(object.optString("Events"));
+            ParamGroups.FromJSON(object.optString("ParamGroups"));
         } catch (Exception ignore) {
         }
     }

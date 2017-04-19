@@ -1,5 +1,7 @@
 package com.my.zakupki;
 
+import android.content.Context;
+
 import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.DataClasses.DealList;
 import com.my.zakupki.Net.ExpenseSearchUrlBuilder;
@@ -40,6 +42,7 @@ public class Common {
             Deal new_deal=new Deal();
             new_deal.Number=map3.get("num").toString();
             new_deal.PublishType=map3.get("expenseType").toString();
+            new_deal.Law=map3.get("expenseLaw").toString();
             new_deal.Publisher=map3.get("organization").toString();
             new_deal.CurrentStatus=map3.get("expenseStage").toString();
             new_deal.Price=map3.get("expensePrice").toString();
@@ -49,5 +52,9 @@ public class Common {
             new_deal.UrlDocuments=map3.get("urlDocuments").toString();
             Common.DealListResults.add(new_deal);
         }
+    }
+
+    public static int dpToPx(Context context, int dp) {
+        return (int) (dp * context.getResources().getSystem().getDisplayMetrics().density);
     }
 }
