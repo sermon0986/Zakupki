@@ -5,8 +5,14 @@ package com.my.zakupki.Net;
  */
 
 public class Fz223PrintFormUrlBuilder extends BaseUrlstringBuilder {
+    String FPrintUrl;
+
+    public Fz223PrintFormUrlBuilder InitUrl(String urlPrintForm){
+        FPrintUrl = urlPrintForm;
+        return this;
+    }
     @Override
     public String Build() {
-        return new String("http://zakupki.gov.ru/223/purchase/public/notification/print-form/show.html?noticeId=4961475");
+        return FPrintUrl;
     }
 }

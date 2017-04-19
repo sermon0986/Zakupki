@@ -72,7 +72,8 @@ public enum RuleTreeFactory  {
         TreeNode<BaseParsingRule> next24 = next2.addChild(new RegexMatchRule(6,"<strong>\\s*([\\d\\p{Blank}]+)\\s*<span>(.*?)</span>"));
 
 //        TreeNode<BaseParsingRule> next22 = next2.addChild(new RegexMatchRule(3,"<td class=\"tenderTd\">[A-Za-z<>/\\s]+<strong>\\s*([\\w[:blank:]:(),]+)\\s*</strong>.*?<span class=\"[\\w\\s]+\">([\\w\\x20:(),]+)/.*?<strong>\\s*([\\d[:blank:]]+)\\s*<span>"));
-        TreeNode<BaseParsingRule> next25 = next2.addChild(new RegexMatchRule(7,"<td class=\"descriptTenderTd\">.*(№\\s\\d+).*Заказчик:\\s*<ul>\\s*<li>\\s*<a.*?>([-\\w\\s\",.()№:A-Za-z=<>/]+)</a>.*?<dd>(.*?)</dd>.*?</td>"));
+        TreeNode<BaseParsingRule> next25 = next2.addChild(new RegexMatchRule(7,"<td class=\"descriptTenderTd\">.*(№\\s\\d+).*Заказчик:\\s*<ul>\\s*<li>\\s*<a.*?>(.*?)</a>.*?<dd>(.*?)</dd>.*?</td>"));
+        TreeNode<BaseParsingRule> next251 = next25.addChild(new RegexRemoveRule(71,"(<span class='pinkBg'>)|(<span class=\"pinkBg\">)|(</span>)|(\\s{2,})"));
         TreeNode<BaseParsingRule> next26 = next2.addChild(new RegexMatchRule(8,"<a[^>]*?(?=href)href=\"(.*?/[Pp]rint-?[Ff]orm/.*?)\""));
         TreeNode<BaseParsingRule> next27 = next2.addChild(new RegexMatchRule(9,"<a[^>]*?(?=href)href=\"([^\"]*?common-info.*?)\""));
         TreeNode<BaseParsingRule> next28 = next2.addChild(new RegexMatchRule(10,"<a[^>]*?(?=href)href=\"([^\"]*?documents.*?)\""));
@@ -128,6 +129,8 @@ public enum RuleTreeFactory  {
         TreeNode<BaseParsingRule> next4 = root0.addChild(new RegexMatchRule(4,"<span class=\"allRecords\">\\s*.*?<strong>(\\d+)</strong>"));
         TreeNode<BaseParsingRule> next2 = root0.addChild(new RegexFindRule(2,"<tr class=[^>]+?>.*?</tr>"));
         TreeNode<BaseParsingRule> next21 = next2.addChild(new RegexMatchRule(3,"<td>\\s*(\\d{2}\\.\\d{2}\\.\\d{4}\\s+\\d{2}:\\d{2})\\s.*?</td>\\s*<td[^>]*>\\s*(.*?)</td>"));
+        TreeNode<BaseParsingRule> next211 = next21.addChild(new RegexRemoveRule(4,"(\\s+<br/>\\s+)"));
+        TreeNode<BaseParsingRule> next2111 = next211.addChild(new UnescapeHtmlRule(5));
         return root0;
     }
 

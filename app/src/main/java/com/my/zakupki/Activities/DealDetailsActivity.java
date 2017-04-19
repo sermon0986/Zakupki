@@ -98,7 +98,7 @@ public class DealDetailsActivity extends AppCompatActivity {
             WebUrlLoader infogetter2 = new WebUrlLoader(
                     DealDetailsActivity.this
                     , updateInfoInterface
-                    , fz44PrintFormUrlBuilder.Build()
+                    , fz44PrintFormUrlBuilder.InitUrl(Common.CurrentDeal.UrlPrintForm).Build()
                     , Common.maClient
                     , RuleTreeFactory.INSTANCE.getTransformer("Fz44_Test_1")
             );
@@ -110,7 +110,7 @@ public class DealDetailsActivity extends AppCompatActivity {
             WebUrlLoader infogetter1 = new WebUrlLoader(
                     DealDetailsActivity.this
                     , updateInfoInterface
-                    , fz223PrintFormUrlBuilder.Build()
+                    , fz223PrintFormUrlBuilder.InitUrl(Common.CurrentDeal.UrlPrintForm).Build()
                     , Common.maClient
                     , RuleTreeFactory.INSTANCE.getTransformer("Fz223_Test_1")
             );

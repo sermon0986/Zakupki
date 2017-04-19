@@ -24,7 +24,7 @@ public class UniZhournalTransformer extends BaseTreeResultTransformer {
         for(int i=0; i<eventsCount; i++){
             Map<String,String> oneEvent = new HashMap<>();
             oneEvent.put("dateTime",  getResult().N().S(0,0).S(2,i).S(3,0).R());
-            oneEvent.put("eventDescr",getResult().N().S(0,0).S(2,i).S(3,1).R());
+            oneEvent.put("eventDescr",getResult().N().S(0,0).S(2,i).S(3,1).S(4,0).S(5,0).R());
             events.add(oneEvent);
         }
         return result;

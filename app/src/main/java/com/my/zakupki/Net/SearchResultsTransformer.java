@@ -34,8 +34,8 @@ public class SearchResultsTransformer extends BaseTreeResultTransformer {
             map3.put("expenseLaw", getResult().N().S(0, 0).S(2, i).S(5,0).R());
             map3.put("expensePrice", getResult().N().S(0, 0).S(2, i).S(6,0).R()+getResult().N().S(0, 0).S(2, i).S(6,1).R());
             map3.put("num", getResult().N().S(0, 0).S(2, i).S(7,0).R().trim());
-            map3.put("organization", getResult().N().S(0, 0).S(2, i).S(7,1).R().trim());
-            map3.put("subject", getResult().N().S(0, 0).S(2, i).S(7,2).R().trim());
+            map3.put("organization", getResult().N().S(0, 0).S(2, i).S(7,1).S(71,0).R().trim());
+            map3.put("subject", getResult().N().S(0, 0).S(2, i).S(7,2).S(71,0).R().trim());
             map3.put("urlPrintForm", getResult().N().S(0, 0).S(2, i).S(8,0).R().trim());
             map3.put("urlCommonInfo", getResult().N().S(0, 0).S(2, i).S(9,0).R().trim());
             map3.put("urlDocuments", getResult().N().S(0, 0).S(2, i).S(10,0).R().trim());

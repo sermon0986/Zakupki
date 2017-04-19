@@ -29,7 +29,10 @@ public class Fz223PrintFormResultTransformer extends BaseTreeResultTransformer {
         for(int i=0; i<pgCount; i++){
             boolean tableIncluded = false;
             Map<String,Object> map3 = new HashMap<>();
-            map3.put("groupName", getResult().N().S(0,0).S(2,i).S(7,0).R());
+            String grName = getResult().N().S(0,0).S(2,i).S(7,0).R();
+            if(grName.isEmpty())
+                grName = "Информация";
+            map3.put("groupName", grName);
             Log.d("Fz223PrintFormResultTr","Got groupName: "+getResult().N().S(0,0).S(2,i).S(7,0).R());
             map3.put("hasTable",new Integer(getResult().N().S(0,0).S(2,i).Count(3)).toString());
             Log.d("Fz223PrintFormResultTr","Got hasTable: "+getResult().N().S(0,0).S(2,i).Count(3));

@@ -17,6 +17,7 @@ public class RegexFindRule extends BaseParsingRule {
         FRegex = aRegex;
     }
 
+    @Override
     public List<String> Apply(String aText){
         List<String> result = new ArrayList<String>();
         Pattern p = Pattern.compile(FRegex, Pattern.DOTALL | Pattern.MULTILINE);
