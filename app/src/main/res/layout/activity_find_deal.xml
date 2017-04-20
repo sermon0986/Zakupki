@@ -29,7 +29,6 @@
         android:layout_marginRight="6dp"
         android:shrinkColumns="*"
         android:stretchColumns="*"
-        android:layout_above="@+id/find_button"
         android:layout_below="@+id/appbar_find">
 
         <TableRow
@@ -45,66 +44,66 @@
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
-        <TableRow
-            android:layout_marginBottom="20dp">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Field2">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-        </TableRow>
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="20dp">-->
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Field2">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+        <!--</TableRow>-->
 
-        <TableRow
-            android:layout_marginBottom="20dp">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Field3">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-        </TableRow>
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="20dp">-->
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Field3">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+        <!--</TableRow>-->
 
-        <TableRow
-            android:layout_marginBottom="20dp">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Field4">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-        </TableRow>
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="20dp">-->
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Field4">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+        <!--</TableRow>-->
 
-        <TableRow
-            android:layout_marginBottom="20dp">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Field5">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-        </TableRow>
-
+        <!--<TableRow-->
+            <!--android:layout_marginBottom="20dp">-->
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Field5">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+        <!--</TableRow>-->
+        <Button
+            android:id="@+id/find_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/colorPrimary"
+            android:text="Найти"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
     </TableLayout>
 
 
-    <Button
-        android:id="@+id/find_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/colorPrimary"
-        android:text="Найти"
-        android:textColor="@android:color/white"
-        android:textSize="15dp" />
+
 
 </RelativeLayout>

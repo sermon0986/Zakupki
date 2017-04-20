@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DealDetailsActivity extends AppCompatActivity {
 
-    private RelativeLayout journal_title;
+    private RelativeLayout journal_header;
     private TableLayout journal_table;
     private ImageView journal_arrow;
     private ProgressBar journal_progress;
@@ -50,18 +50,21 @@ public class DealDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deal_details);
 
+        boolean fromNotify=getIntent().getBooleanExtra("FromNotify", false);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_details);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Детали закупки");
+        if(getSupportActionBar()!=null)
+            getSupportActionBar().setTitle("Детали закупки");
 
-        journal_title=(RelativeLayout)findViewById(R.id.journal_title);
+        journal_header =(RelativeLayout)findViewById(R.id.journal_header);
         journal_table=(TableLayout)findViewById(R.id.journal_table);
         journal_arrow=(ImageView)findViewById(R.id.journal_arrow);
         journal_progress=(ProgressBar)findViewById(R.id.journal_progress);
 
         groupLayout=(LinearLayout)findViewById(R.id.groupLayout);
 
-        journal_title.setOnClickListener(new View.OnClickListener() {
+        journal_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(journal_table.getVisibility()==View.VISIBLE) {
@@ -70,12 +73,23 @@ public class DealDetailsActivity extends AppCompatActivity {
                 }else {
                     journal_table.setVisibility(View.VISIBLE);
                     journal_arrow.setRotation(0);
+                    for(Event event:Common.CurrentDeal.Events.Items)
+                        event.Showed=true;
+                    if(Common.Favorites.IndexOf(Common.CurrentDeal)!=-1)
+                        Storage.SaveFavorites(DealDetailsActivity.this);
                 }
             }
         });
 
         ViewJournal();
         ViewGroups();
+
+        if(journal_table.getVisibility()==View.VISIBLE){
+            for(Event event:Common.CurrentDeal.Events.Items)
+                event.Showed=true;
+            if(Common.Favorites.IndexOf(Common.CurrentDeal)!=-1)
+                Storage.SaveFavorites(DealDetailsActivity.this);
+        }
 
         UniZhournalUrlBuilder uniZhournalUrlBuilder=new UniZhournalUrlBuilder();
         if(!Common.CurrentDeal.UrlCommonInfo.isEmpty()) {
@@ -240,13 +254,19 @@ public class DealDetailsActivity extends AppCompatActivity {
         @Override
         public void onSuccess(Map<String, Object> resultSet) {
             List<Map<String,String>> list = (List<Map<String,String>>)resultSet.get("events");
+            boolean update=Common.CurrentDeal.Events.Items.size()>0;
             if(list.size()>0) {
-                Common.CurrentDeal.Events.Items.clear();
                 for (Map<String, String> map3 : list) {
                     Event event = new Event();
                     event.Date = map3.get("dateTime").toString();
                     event.Content = map3.get("eventDescr").toString();
-                    Common.CurrentDeal.Events.Items.add(event);
+                    event.UpdateTime = System.currentTimeMillis();
+                    if(Common.CurrentDeal.Events.IndexOf(event)==-1) {
+                        if(update)
+                            Common.CurrentDeal.Events.Items.add(0, event);
+                        else
+                            Common.CurrentDeal.Events.Items.add(event);
+                    }
                 }
                 ViewJournal();
                 if(Common.Favorites.IndexOf(Common.CurrentDeal)!=-1)
@@ -278,6 +298,11 @@ public class DealDetailsActivity extends AppCompatActivity {
             text2.setText(event.Content);
             row.addView(text1);
             row.addView(text2);
+
+            if(!event.Showed){
+                text1.setTextColor(getResources().getColor(R.color.colorHighlight));
+                text2.setTextColor(getResources().getColor(R.color.colorHighlight));
+            }
 
             DisplayMetrics displaymetrics = getResources().getDisplayMetrics();
 

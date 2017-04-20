@@ -1,6 +1,8 @@
 package com.my.zakupki;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +10,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Storage {
+
+    public static String ReadString(Context context, String key) {
+        return ReadString(context, key, "");
+    }
+
+    public static String ReadString(Context context, String key, String def) {
+        SharedPreferences Prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return Prefs.getString(key, def);
+    }
+
+    public static void SaveString(Context context, String key, String value) {
+        SharedPreferences Prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor ed = Prefs.edit();
+        ed.putString(key, value);
+        ed.apply();
+    }
 
 //    public static boolean checkStoragePermission(Context context) {
 //        return (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);

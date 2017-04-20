@@ -16,22 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.my.zakupki.Adapters.RecyclerViewAdapter_Main;
 import com.my.zakupki.Common;
 import com.my.zakupki.DataClasses.Deal;
 import com.my.zakupki.DataClasses.DealList;
 import com.my.zakupki.Interfaces.AdapterInterface;
-import com.my.zakupki.Net.ExpenseSearchUrlBuilder;
-import com.my.zakupki.Net.PageLoaderCallbackInterface;
-import com.my.zakupki.Net.RuleTreeFactory;
-import com.my.zakupki.Net.UrlstringBuilderFactory;
-import com.my.zakupki.Net.WebUrlLoader;
 import com.my.zakupki.R;
 import com.my.zakupki.Storage;
-
-import java.util.Map;
 
 import okhttp3.OkHttpClient;
 
@@ -51,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Button testButton=(Button)findViewById(R.id.testButton);
-        //testButton.setVisibility(View.GONE);
+        testButton.setVisibility(View.GONE);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +85,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+//        UpdateJob.scheduleJob();
+//        UpdateJob.schedulePeriodicJob();
     }
+
+
+
+
 
     private void UpdateView()
     {

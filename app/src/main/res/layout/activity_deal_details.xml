@@ -34,13 +34,13 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="@color/colorSecondBackground"
                 app:cardCornerRadius="4dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 app:contentPadding="5dp">
 
                 <LinearLayout
@@ -52,7 +52,7 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:id="@+id/journal_title"
+                        android:id="@+id/journal_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 

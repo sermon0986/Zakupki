@@ -8,13 +8,13 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         app:cardBackgroundColor="@color/colorSecondBackground"
         app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
+        app:cardElevation="2dp"
         app:contentPadding="5dp">
 
         <LinearLayout
@@ -32,6 +32,9 @@
 
                 <TextView
                     android:id="@+id/group_title"
+                    android:layout_toLeftOf="@+id/group_arrow"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"

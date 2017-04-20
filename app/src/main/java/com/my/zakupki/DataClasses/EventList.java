@@ -14,6 +14,14 @@ public class EventList {
         Items=new ArrayList<>();
     }
 
+    public int IndexOf(Event event)
+    {
+        for(int i=0;i<Items.size();i++)
+            if(Items.get(i).Date.equals(event.Date) && Items.get(i).Content.equals(event.Content))
+                return i;
+        return -1;
+    }
+
     public String ToJSON()
     {
         JSONArray array=new JSONArray();

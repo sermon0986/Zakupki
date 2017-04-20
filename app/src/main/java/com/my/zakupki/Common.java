@@ -26,7 +26,6 @@ public class Common {
     public static int PagesNum;
     public static int ResultsCount;
 
-
     public static OkHttpClient maClient;
     public static ExpenseSearchUrlBuilder FSearchUrlBuilder;
 
